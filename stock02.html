@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="stock02.css">
+    <script src="stock02.js"></script>
+</head>
+<body>
+	<header>
+		<a href="stock02.html">HOW MUCH</a>
+	</header>
+	<div class="imgDiv">
+		 
+	</div>
+	<div class="container">
+		<div></div>
+		<form class="formBox">
+			<br><br>
+			<h2>얼마나 벌었을까?</h2>
+			<p>내가 사놓은 주식들<br>현재 얼마나 성장했는지 확인해보세요.</p>
+			<br>
+			<div>
+				<input type="text" id="stockName"  placeholder="종목명"  autocomplete=off>
+			</div>
+
+			<div>
+				<input type="text" id="currentPrice"  placeholder="현재가"  autocomplete=off>
+			</div>
+
+			<div>
+				<input type="text" id="buyingPrice"  placeholder="매수가" autocomplete=off>
+			</div>
+			
+			<div>
+				<input type="text" id="buyingQuantity"  placeholder="매수량"  autocomplete=off>
+			</div>
+
+			<br><br>
+
+			<input type="button" class="check"onclick="inputCheck()" value="🔎확인">
+			<input type="reset" class="reset" value="🚿리셋">
+		</form>
+		<div class="resultBox"></div>
+		<div></div>
+	</div>
+</body>
+</html>
