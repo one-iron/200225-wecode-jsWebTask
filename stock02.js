@@ -18,6 +18,9 @@ function inputCheck(){ // input값이 올바르게 들어왔는지 확인 후 in
 	else if(bq == "" || typeof (bq * 1) !== "number"){
 		alert('매수액을 입력해 주세요.')
 	}
+	else if(cp == bp){
+		alert('변동사항이 없으십니다. 너무 조급해 하지마세요.')
+	}
 	else calculate(sn, cp, bp, bq);
 }
 
@@ -28,15 +31,30 @@ function calculate(sn, cp, bp, bq){ //올바른 input값을 인자로 받아 계
 	const percent = ((((cp - bp) / bp)) * 100).toFixed(1); // 이익율 계산 
 	const profit = Math.floor(((bq * percent) / 100)); // 이익금 계산
 
-	const resultItem = document.createElement("li"); // 결과 아이템 만들기
-	const dltBtn = document.createElement("button") // 삭제버튼을 만들기
+	const dltBtn = document.createElement("span") // 삭제버튼을 만들기
+	const divBox = document.createElement("div"); // 결과 박스 만들기
+	const title = document.createElement("h5"); // 제목 엘리멘트 만들기
+	const content = document.createElement("p") // 내용 엘리멘트 만들기
 
-	resultItem.innerHTML = `${sn} ${percent}% ${profit} ${cp} ${bp} ${bq}`; //리스트에 종목명, 이익률, 이익금 텍스트 넣기
-	dltBtn.innerHTML = "❌" // 삭제버튼에 텍스트 넣기
+	dltBtn.innerHTML = "🔴삭제" // 삭제버튼에 텍스트 넣기
 	dltBtn.addEventListener("click", dltItem) // 삭제버튼에 클릭하면 삭제 함수 연결
 
-	resultItem.appendChild(dltBtn); // 결과 아이템에 삭제버튼 추가
-	resultBox.appendChild(resultItem); // resultBox에 결과 아이템 추가
+	if(percent > 0){
+		title.innerHTML = `<br>${sn}↗`;
+		content.innerHTML = `매수하신 뒤로<br><br> ${percent}% 증가하였습니다. ↗ <br>현재 수익은 ${profit}원 입니다. 🤑`;
+		title.style.backgroundColor = "orangered";
+	}
+	else if(percent < 0){
+		title.innerHTML = `<br>${sn}↘`;
+		content.innerHTML = `매수하신 뒤로<br><br> ${percent}% 감소하였습니다. ↘ <br>현재 손해는 ${profit}원 입니다. 😨`
+		title.style.backgroundColor = "mediumblue";
+	}
+	
+
+	divBox.appendChild(title);
+	divBox.appendChild(content);
+	divBox.appendChild(dltBtn);
+	resultBox.appendChild(divBox); // resultBox에 결과 아이템 추가
 
 }
 
